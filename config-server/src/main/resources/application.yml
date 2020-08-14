@@ -1,0 +1,39 @@
+server:
+  port: 9001
+
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/vivek22117/cloud-config-properties.git
+          search-paths:
+            - '*service'
+          default-label: develop
+      name: config-server
+
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - refresh
+          - info
+          - metrics
+          - env
+          - mappings
+          - beans
+          - shutdown
+          - prometheus
+      base-path: /internal
+  server:
+    port: 8001
