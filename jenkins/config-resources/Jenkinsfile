@@ -29,7 +29,7 @@ pipeline {
                 dir('config-server/') {
                     script {
                         def gradleHome = tool 'Gradle'
-                        sh "'${gradleHome}/' gradlew clean build"
+                        sh "'${gradleHome}/bin/gradle' clean build"
                     }
                 }
             }
