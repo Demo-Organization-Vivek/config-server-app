@@ -25,9 +25,7 @@ hs_err_pid*
 
 HELP.md
 .gradle
-config-server/.gradle
 build/
-config-server/build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**
 !**/src/test/**
