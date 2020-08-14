@@ -19,6 +19,21 @@ pipeline {
     }
 
     stages {
+        stage('build') {
+            when {
+                expression {
+                    "${params.AWS_INFRA_ACTION}" == "create"
+                }
+            }
+            steps {
+                dir('config-server/') {
+                    script {
+                        def gradleHome = tool 'Gradle'
+                        sh "'${gradleHome}' ./gradlew clean build"
+                    }
+                }
+            }
+        }
         stage('tf-init') {
             steps {
                 dir('aws-infra/aws-ecr-infra/') {
