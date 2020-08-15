@@ -29,7 +29,7 @@ resource "aws_ecs_service" "config_server_ecs_service" {
   load_balancer {
     target_group_arn = aws_lb_target_group.config_server_ecs_alb_tg.arn
     container_name   = "Config-Server"
-    container_port   = 3000
+    container_port   = 9001
   }
 }
 
@@ -51,7 +51,7 @@ resource "aws_alb_listener_rule" "ecs_alb_listener_rule" {
 }
 
 resource "aws_lb_target_group" "config_server_ecs_alb_tg" {
-  name = "${var.component_name}-${var.environment}-config-server-tg"
+  name = "${var.component_name}-${var.environment}-cs-tg"
 
   port        = var.default_target_group_port
   protocol    = "HTTP"
@@ -69,7 +69,6 @@ resource "aws_lb_target_group" "config_server_ecs_alb_tg" {
     unhealthy_threshold = 5
     timeout             = 5
     interval            = 20
-    port                = 8001
     path                = "/internal/health"
     matcher             = "200"
   }

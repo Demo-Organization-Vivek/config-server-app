@@ -48,11 +48,6 @@ variable "default_target_group_port" {
   description = "Target group port for ECS Cluster"
 }
 
-variable "grafana_image" {
-  type        = string
-  description = "Grafana image from Docker"
-}
-
 #################################
 #  Default Variables            #
 #################################
