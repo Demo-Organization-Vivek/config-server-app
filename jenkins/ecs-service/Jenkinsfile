@@ -84,7 +84,7 @@ pipeline {
                         }
                         if (apply) {
                             sh "echo creating AWS infra....."
-                            unstash "config-server-ecr-plan"
+                            unstash "config-server-ecs-service-plan"
                             sh "terraform apply -auto-approve config-server-ecs-service.tfplan"
                         }
                     }
