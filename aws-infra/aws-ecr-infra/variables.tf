@@ -24,7 +24,6 @@ variable "component_name" {
   description = "Component name for resources"
 }
 
-
 #################################
 # ECR Variables                 #
 #################################

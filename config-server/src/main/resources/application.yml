@@ -35,5 +35,3 @@ management:
           - shutdown
           - prometheus
       base-path: /internal
-  server:
-    port: 8001
