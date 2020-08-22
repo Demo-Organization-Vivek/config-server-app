@@ -2,7 +2,7 @@ FROM openjdk:8u212-jre-alpine
 
 RUN mkdir /app
 RUN apk --update add curl
-HEALTHCHECK CMD curl -v --fail http://localhost:8001/internal/health || exit 1
+HEALTHCHECK CMD curl -v --fail http://localhost:9001/internal/health || exit 1
 
 COPY build/libs/service.jar /app/service.jar
 EXPOSE 9001
