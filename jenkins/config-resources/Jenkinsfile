@@ -125,7 +125,6 @@ pipeline {
                         print("IMAGE_TAG =  ${IMAGE_TAG}")
 
                         echo 'login to ecr started'
-                        // sh(script: "aws ecr get-login --no-include-email --region us-east-1", returnStdout: true)
                         sh '$(aws ecr get-login --no-include-email --region us-east-1)'
                         echo 'logged in successfully'
 
