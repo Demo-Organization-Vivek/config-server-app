@@ -18,12 +18,6 @@ variable "owner_team" {
   type        = string
   description = "Name of owner team"
 }
-
-variable "component_name" {
-  type        = string
-  description = "Component name for resources"
-}
-
 #################################
 # ECR Variables                 #
 #################################
