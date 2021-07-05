@@ -51,12 +51,6 @@ data "template_file" "ecs_service_policy_template" {
 
 data "template_file" "ecs_task_policy_template" {
   template = file("${path.module}/policy-doc/ecs-task-policy.json")
-
-  vars = {
-    account_id     = data.aws_caller_identity.current.id
-    environment    = var.environment
-    component-name = var.component_name
-  }
 }
 
 data "template_file" "config_server_task" {
