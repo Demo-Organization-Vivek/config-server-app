@@ -6,6 +6,6 @@ HEALTHCHECK CMD curl -v --fail http://localhost:9001/internal/health || exit 1
 
 COPY build/libs/service.jar /app/service.jar
 EXPOSE 9001
-ENV ENVIRONMENT="qa"
+ENV ENVIRONMENT="test"
 
 ENTRYPOINT  java -Djava.net.preferIPv4Stack=true -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1 -jar /app/service.jar --spring.profiles.active=$ENVIRONMENT
