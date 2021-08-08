@@ -1,4 +1,4 @@
-name: 'Weather-API ECS Service Infra Pipeline'
+name: 'Config Server ECS Service Infra Pipeline'
 
 on:
   workflow_dispatch:
