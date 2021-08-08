@@ -51,7 +51,9 @@ jobs:
 
       - name: Change wrapper permissions
         working-directory: ${{ env.gradle_dir }}
-        run: chmod +x ./gradlew
+        run: |
+          chmod +x ./gradlew
+          gradle wrapper
 
       - uses: gradle/gradle-build-action@v1
         with:
