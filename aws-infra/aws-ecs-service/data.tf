@@ -59,4 +59,3 @@ data "template_file" "config_server_task" {
   }
 }
 
-data "aws_caller_identity" "current" {}
