@@ -53,9 +53,11 @@ jobs:
         working-directory: ${{ env.gradle_dir }}
         run: chmod +x ./gradlew
 
-      - name: Build with Gradle
-        working-directory: ${{ env.gradle_dir }}
-        run: ./gradlew build
+      - uses: gradle/gradle-build-action@v1
+        with:
+          build-root-directory: ${{ env.gradle_dir }}
+          gradle-executable: '${{ env.gradle_dir }}/gradle'
+          arguments: build
 
       #  Configure AWS Credentials using IAM Role
       - name: AWS IAM Assume Role
