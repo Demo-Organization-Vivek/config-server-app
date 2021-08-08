@@ -49,6 +49,10 @@ jobs:
           java-version: '8'
           distribution: 'adopt'
 
+      - name: Change wrapper permissions
+        working-directory: ${{ env.gradle_dir }}
+        run: chmod +x ./gradlew
+
       - name: Build with Gradle
         working-directory: ${{ env.gradle_dir }}
         run: ./gradlew build
