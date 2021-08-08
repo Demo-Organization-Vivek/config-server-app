@@ -54,7 +54,7 @@ jobs:
         uses: gradle/gradle-build-action@v1
         with:
           build-root-directory: ${{ env.gradle_dir }}
-          arguments: clean build
+          arguments: build
 
       #  Configure AWS Credentials using IAM Role
       - name: AWS IAM Assume Role
