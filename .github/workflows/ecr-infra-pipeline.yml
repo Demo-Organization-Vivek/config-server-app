@@ -49,9 +49,6 @@ jobs:
           java-version: '8'
           distribution: 'adopt'
 
-      - name: Validate Gradle wrapper
-        uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
-
       - name: Change wrapper permissions
         working-directory: ${{ env.gradle_dir }}
         run: chmod +x ./gradlew
