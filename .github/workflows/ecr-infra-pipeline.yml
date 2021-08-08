@@ -116,7 +116,7 @@ jobs:
         working-directory: ${{ env.gradle_dir }}
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: config-server-app
+          ECR_REPOSITORY: app-config-server
           IMAGE_TAG: latest
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
