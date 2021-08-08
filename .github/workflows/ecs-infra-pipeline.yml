@@ -18,7 +18,7 @@ on:
 
 env:
   tf_version: '0.13.5'
-  tf_working_dir_app: './aws-infra/weather-api-infra/ecs-service/'
+  tf_working_dir_app: './aws-infra/aws-ecs-service/'
   aws_region: 'us-east-1'
   environment: ${{ github.event.inputs.env }}
 
