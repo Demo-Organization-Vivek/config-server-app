@@ -113,7 +113,7 @@ jobs:
       - name: Build, tag, and push image to Amazon ECR
         if: github.event.inputs.action == 'Create'
         id: build-image
-        working-directory: ${{ env.gradle_dir }}
+        working-directory: ${{ env.maven_dir }}
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: app-config-server
