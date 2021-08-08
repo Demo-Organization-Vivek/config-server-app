@@ -5,7 +5,6 @@ data "terraform_remote_state" "vpc" {
   backend = "s3"
 
   config = {
-    profile = var.profile
     bucket  = "${var.s3_bucket_prefix}-${var.environment}-${var.default_region}"
     key     = "state/${var.environment}/vpc/terraform.tfstate"
     region  = var.default_region
@@ -16,7 +15,6 @@ data "terraform_remote_state" "backend" {
   backend = "s3"
 
   config = {
-    profile = var.profile
     bucket  = "${var.s3_bucket_prefix}-${var.environment}-${var.default_region}"
     key     = "state/${var.environment}/backend/terraform.tfstate"
     region  = var.default_region
@@ -27,7 +25,6 @@ data "terraform_remote_state" "ecs-cluster" {
   backend = "s3"
 
   config = {
-    profile = var.profile
     bucket  = "${var.s3_bucket_prefix}-${var.environment}-${var.default_region}"
     key     = "state/${var.environment}/ecs-cluster/terraform.tfstate"
     region  = var.default_region
@@ -38,7 +35,6 @@ data "terraform_remote_state" "config_server_ecr_state" {
   backend = "s3"
 
   config = {
-    profile = var.profile
     bucket  = "${var.s3_bucket_prefix}-${var.environment}-${var.default_region}"
     key     = "state/${var.environment}/ecr-repo/config-server-app/terraform.tfstate"
     region  = var.default_region
