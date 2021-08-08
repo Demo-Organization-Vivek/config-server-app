@@ -51,9 +51,7 @@ jobs:
 
       # Build Gradle Project
       - name: Build Maven Project
-        working-directory: ${{ env.gradle_dir }}
         uses: gradle/gradle-build-action@v1
-        run: echo "Building gradle..."
         with:
           arguments: build
 
