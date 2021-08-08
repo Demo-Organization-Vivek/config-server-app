@@ -19,6 +19,6 @@ public class ServiceInfoIndicator implements InfoContributor {
         builder.withDetail("Description", "Application to act as config Server!");
         builder.build();
 
-        log.info("Application info has been configured!");
+        log.info("Application info has been configured...!");
     }
 }
