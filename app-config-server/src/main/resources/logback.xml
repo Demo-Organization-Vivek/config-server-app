@@ -1,39 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="true">
-    <property name="IS_ENVIRONMENT_DEVL_QUAL_CERT_OR_PROD" value="true" />
+    <property name="IS_ENVIRONMENT_DEV_OR_PROD" value="false" />
     <property name="LOG_LEVEL" value="DEBUG" />
 
-    <if condition='"${Environment}".equalsIgnoreCase("Prod")'>
+    <if condition='"${environment}".equalsIgnoreCase("Prod")'>
         <then>
             <property name="LOG_LEVEL" value="ERROR" />
         </then>
     </if>
 
-<!--    <if condition='"${Environment}".equalsIgnoreCase("Local")'>-->
-<!--        <then>-->
-<!--            <property name="IS_ENVIRONMENT_DEVL_QUAL_CERT_OR_PROD" value="false" />-->
-<!--        </then>-->
-<!--    </if>-->
-
-<!--    <if condition='"${Environment}".equalsIgnoreCase("qa")'>-->
-<!--        <then>-->
-<!--            <property name="IS_ENVIRONMENT_DEVL_QUAL_CERT_OR_PROD" value="false" />-->
-<!--        </then>-->
-<!--    </if>-->
-
-<!--    <if condition='"${Environment}".equalsIgnoreCase("dev")'>-->
-<!--        <then>-->
-<!--            <property name="IS_ENVIRONMENT_DEVL_QUAL_CERT_OR_PROD" value="false" />-->
-<!--        </then>-->
-<!--    </if>-->
-
-<!--    <if condition='"${Environment}".equalsIgnoreCase("Environment_IS_UNDEFINED")'>-->
-<!--        <then>-->
-<!--            <property name="IS_ENVIRONMENT_DEVL_QUAL_CERT_OR_PROD" value="false" />-->
-<!--        </then>-->
-<!--    </if>-->
-
-    <if condition='property("IS_ENVIRONMENT_DEVL_QUAL_CERT_OR_PROD").equalsIgnoreCase("true")'>
+    <if condition='property("IS_ENVIRONMENT_DEV_OR_PROD").equalsIgnoreCase("true")'>
         <then>
             <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
                 <layout class="ch.qos.logback.classic.PatternLayout">
@@ -43,11 +19,7 @@
                 </layout>
             </appender>
 
-            <logger name="com.dd.service.config" level='${LOG_LEVEL}' additivity="false">
-                <appender-ref ref="CONSOLE" />
-            </logger>
-
-            <logger name="com.amazonaws" level="ERROR" additivity="false">
+            <logger name="com.weather.api" level='${LOG_LEVEL}' additivity="false">
                 <appender-ref ref="CONSOLE" />
             </logger>
 
@@ -66,7 +38,7 @@
         </then>
         <else>
             <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-                <file>./log/config-server.log</file>
+                <file>./log/config-server-log.log</file>
                 <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
                     <fileNamePattern>./log/config-server.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
                     <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
@@ -82,11 +54,7 @@
                 </encoder>
             </appender>
 
-            <logger name="com.dd.service.config" level="DEBUG" additivity="false">
-                <appender-ref ref="FILE" />
-            </logger>
-
-            <logger name="com.amazonaws" level="ERROR" additivity="false">
+            <logger name="com.dd.config.service" level="DEBUG" additivity="false">
                 <appender-ref ref="FILE" />
             </logger>
 

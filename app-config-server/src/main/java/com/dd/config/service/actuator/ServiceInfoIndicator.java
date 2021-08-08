@@ -1,13 +1,14 @@
-package com.dd.service.config.acutator;
+package com.dd.config.service.actuator;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.actuate.info.Info;
 import org.springframework.boot.actuate.info.InfoContributor;
 import org.springframework.stereotype.Component;
 
+
 @Slf4j
 @Component
-public class AppInfoIndicator implements InfoContributor {
+public class ServiceInfoIndicator implements InfoContributor {
 
 
     @Override

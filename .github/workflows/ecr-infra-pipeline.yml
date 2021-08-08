@@ -19,7 +19,7 @@ on:
 env:
   tf_version: '0.13.5'
   tf_working_dir_app: './aws-infra/aws-ecr-infra/'
-  gradle_dir: './config-server/'
+  maven_dir: './app-config-server/'
   aws_region: 'us-east-1'
   environment: ${{ github.event.inputs.env }}
 
@@ -49,19 +49,10 @@ jobs:
           java-version: '8'
           distribution: 'adopt'
 
-      - name: Change wrapper permissions
-        working-directory: ${{ env.gradle_dir }}
-        run: |
-          chmod +x ./gradlew
-          chmod +x ./gradlew.bat
-          ./gradlew.bat build
-
-      - uses: gradle/gradle-build-action@v1
-        with:
-          build-root-directory: ${{ env.gradle_dir }}
-          wrapper-directory: '${{ env.gradle_dir }}gradle'
-          gradle-executable: '${{ env.gradle_dir }}gradlew'
-          arguments: build
+      # Build Maven Project
+      - name: Build Maven Project
+        working-directory: ${{ env.maven_dir }}
+        run: mvn clean install -Dintegration-tests.skip=true
 
       #  Configure AWS Credentials using IAM Role
       - name: AWS IAM Assume Role
