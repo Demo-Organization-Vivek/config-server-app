@@ -53,7 +53,7 @@ jobs:
       - name: Build Maven Project
         uses: gradle/gradle-build-action@v1
         with:
-          build-root-directory: ${{ env.gradle_dir }}
+          gradle-executable: ${{ env.gradle_dir }}
           arguments: build
 
       #  Configure AWS Credentials using IAM Role
