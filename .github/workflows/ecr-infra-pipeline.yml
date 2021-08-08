@@ -49,12 +49,9 @@ jobs:
           java-version: '8'
           distribution: 'adopt'
 
-      # Build Gradle Project
-      - name: Build Maven Project
-        uses: gradle/gradle-build-action@v1
-        with:
-          gradle-executable: ${{ env.gradle_dir }}
-          arguments: build
+      - name: Build with Gradle
+        working-directory: ${{ env.gradle_dir }}
+        run: ./gradlew build
 
       #  Configure AWS Credentials using IAM Role
       - name: AWS IAM Assume Role
