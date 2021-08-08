@@ -73,6 +73,7 @@ jobs:
           tf_actions_comment: false
 
       - name: Terraform Plan Config Server ECS Service
+        if: github.event.inputs.action == 'Create'
         id: app-plan
         uses: hashicorp/terraform-github-actions@master
         with:
