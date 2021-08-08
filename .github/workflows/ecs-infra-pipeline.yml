@@ -24,7 +24,7 @@ env:
 
 jobs:
   terraform:
-    name: 'Weather-API-ECS-Service-Deployment-Pipeline-${{ github.event.inputs.action }}'
+    name: 'Config-Server-ECS-Service-Deployment-Pipeline-${{ github.event.inputs.action }}'
     runs-on: ubuntu-latest
 
     defaults:
@@ -54,7 +54,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
 
-      - name: Terraform Init For Backend Server
+      - name: Terraform Init For Config Server ECS Service
         uses: hashicorp/terraform-github-actions@master
         with:
           tf_actions_version: ${{ env.tf_version }}
@@ -72,7 +72,7 @@ jobs:
           tf_actions_working_dir: ${{ env.tf_working_dir_app }}
           tf_actions_comment: false
 
-      - name: Terraform Plan ECS Cluster
+      - name: Terraform Plan Config Server ECS Service
         id: app-plan
         uses: hashicorp/terraform-github-actions@master
         with:
@@ -82,7 +82,7 @@ jobs:
           tf_actions_subcommand: 'plan'
           args: '-var="environment=${{ env.environment }}" -var-file="${{ env.environment }}.tfvars"'
 
-      - name: Terraform Apply For ECS Cluster
+      - name: Terraform Apply For Config Server ECS Service
         if: steps.app-plan.outputs.tf_actions_plan_has_changes == 'true' && github.event.inputs.action == 'Create'
         uses: hashicorp/terraform-github-actions@master
         with:
@@ -92,7 +92,7 @@ jobs:
           tf_actions_comment: false
           args: '-auto-approve -var="environment=${{ env.environment }}" -var-file="${{ env.environment }}.tfvars"'
 
-      - name: Terraform Destroy For ECS Cluster
+      - name: Terraform Destroy For Config Server ECS Service
         if: github.event.inputs.action == 'Destroy'
         uses: hashicorp/terraform-github-actions@master
         with:
