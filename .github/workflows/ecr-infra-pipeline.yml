@@ -19,7 +19,7 @@ on:
 env:
   tf_version: '0.13.5'
   tf_working_dir_app: './aws-infra/aws-ecr-infra/'
-  gradle_dir: './config-server/'
+  gradle_dir: './config-server'
   aws_region: 'us-east-1'
   environment: ${{ github.event.inputs.env }}
 
@@ -51,7 +51,7 @@ jobs:
 
       # Build Gradle Project
       - name: Build Gradle Project
-        uses: eskatos/gradle-command-action@v1
+        uses: gradle/gradle-build-action@v1
         with:
           build-root-directory: ${{ env.gradle_dir }}
           arguments: clean build
