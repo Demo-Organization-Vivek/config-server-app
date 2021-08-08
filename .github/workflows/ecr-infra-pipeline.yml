@@ -50,11 +50,11 @@ jobs:
           distribution: 'adopt'
 
       # Build Gradle Project
-      - name: Build Gradle Project
-        uses: gradle/gradle-build-action@v1
-        with:
-          build-root-directory: ${{ env.gradle_dir }}
-          arguments: build
+      - name: Build Maven Project
+        working-directory: ${{ env.gradle_dir }}
+        run: |
+          echo "Building project...."
+          ./gradlew clean build
 
       #  Configure AWS Credentials using IAM Role
       - name: AWS IAM Assume Role
