@@ -53,6 +53,7 @@ jobs:
         working-directory: ${{ env.gradle_dir }}
         run: |
           chmod +x ./gradlew
+          chmod +x ./gradlew.bat
           ./gradlew.bat build
 
       - uses: gradle/gradle-build-action@v1
