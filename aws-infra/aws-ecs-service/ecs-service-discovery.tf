@@ -7,7 +7,7 @@ locals {
   namespace_id       = lookup(var.service_discovery, "namespace_id", "")
 }
 
-resource "aws_service_discovery_service" "health_check_custom" {
+resource "aws_service_discovery_service" "config_server_sd" {
   count = length(var.service_discovery) > 0 && length(var.service_discovery_health_check_custom_config) > 0 ? 1 : 0
 
   name = local.namespace_name
