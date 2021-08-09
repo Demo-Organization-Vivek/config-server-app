@@ -1,5 +1,14 @@
+# service_discovery map
+locals {
+  dns_routing_policy = lookup(var.service_discovery, "routing_policy", "MULTIVALUE")
+  dns_ttl            = lookup(var.service_discovery, "ttl", 60)
+  dns_type           = lookup(var.service_discovery, "type", "A")
+  namespace_name     = lookup(var.service_discovery, "name", var.name)
+  namespace_id       = lookup(var.service_discovery, "namespace_id", "")
+}
+
 resource "aws_service_discovery_service" "health_check_custom" {
-  count = length(var.service_discovery) > 0 && length(var.service_discovery_health_check_config) == 0 && length(var.service_discovery_health_check_custom_config) > 0 ? 1 : 0
+  count = length(var.service_discovery) > 0 && length(var.service_discovery_health_check_custom_config) > 0 ? 1 : 0
 
   name = local.namespace_name
 
