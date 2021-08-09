@@ -14,7 +14,7 @@ resource "aws_ecs_task_definition" "config_server_task_def" {
 resource "aws_ecs_service" "config_server_ecs_service" {
   depends_on = [aws_iam_role.ecs_service_role, aws_iam_role.ecs_task_execution_role]
 
-  name                = "${var.component_name}-ecs-service"
+  name                = var.component_name
   iam_role            = aws_iam_role.ecs_service_role.name
   cluster             = data.terraform_remote_state.ecs-cluster.outputs.ecs-cluster-id
   task_definition     = aws_ecs_task_definition.config_server_task_def.arn
