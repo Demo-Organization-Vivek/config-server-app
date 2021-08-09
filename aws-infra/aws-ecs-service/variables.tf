@@ -63,3 +63,16 @@ locals {
     environment = var.environment
   }
 }
+
+#####============================ECS Service Discovery Variables================================#####
+variable "service_discovery" {
+  description = "A service discovery block"
+  type        = map(any)
+  default     = {}
+}
+
+variable "service_discovery_health_check_custom_config" {
+  description = "A service discovery health check custom config block"
+  type        = map(string)
+  default     = {}
+}
