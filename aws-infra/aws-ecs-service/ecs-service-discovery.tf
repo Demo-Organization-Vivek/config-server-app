@@ -4,7 +4,12 @@ locals {
   dns_ttl            = lookup(var.service_discovery, "ttl", 60)
   dns_type           = lookup(var.service_discovery, "type", "A")
   namespace_name     = lookup(var.service_discovery, "name", var.component_name)
-  namespace_id       = lookup(var.service_discovery, "namespace_id", "")
+}
+
+resource "aws_service_discovery_private_dns_namespace" "config_server_pvt_dns_ns" {
+  name        = "config-server"
+  description = "Config-Server"
+  vpc         = aws_vpc.main.id
 }
 
 resource "aws_service_discovery_service" "config_server_sd" {
@@ -13,7 +18,7 @@ resource "aws_service_discovery_service" "config_server_sd" {
   name = local.namespace_name
 
   dns_config {
-    namespace_id = local.namespace_id
+    namespace_id = aws_service_discovery_private_dns_namespace.config_server_pvt_dns_ns.id
 
     dns_records {
       ttl  = local.dns_ttl
