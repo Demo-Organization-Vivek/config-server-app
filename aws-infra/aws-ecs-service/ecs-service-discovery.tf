@@ -9,7 +9,7 @@ locals {
 resource "aws_service_discovery_private_dns_namespace" "config_server_pvt_dns_ns" {
   name        = "config-server"
   description = "Config-Server"
-  vpc         = aws_vpc.main.id
+  vpc         = data.terraform_remote_state.vpc.outputs.vpc_id
 }
 
 resource "aws_service_discovery_service" "config_server_sd" {
