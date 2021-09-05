@@ -9,7 +9,7 @@ on:
         default: 'initiate'
       action:
         required: false
-        description: 'create & destroy'
+        description: 'Create & Destroy'
         default: 'Create'
       env:
         required: true
@@ -25,7 +25,7 @@ env:
 
 jobs:
   terraform:
-    name: 'Config-Server-ECR-Repo-Deployment-Pipeline-${{ github.event.inputs.action }}'
+    name: 'Config-Server-ECR-Deployment-Pipeline-${{ github.event.inputs.action }}'
     runs-on: ubuntu-latest
 
     defaults:
@@ -51,6 +51,7 @@ jobs:
 
       # Build Maven Project
       - name: Build Maven Project
+        if: github.event.inputs.action == 'Create'
         working-directory: ${{ env.maven_dir }}
         run: mvn clean install -Dintegration-tests.skip=true
 
@@ -86,6 +87,7 @@ jobs:
           tf_actions_comment: false
 
       - name: Terraform Plan ECR Repository
+        if: github.event.inputs.action == 'Create'
         id: app-plan
         uses: hashicorp/terraform-github-actions@master
         with:
