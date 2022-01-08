@@ -1,7 +1,7 @@
-owner_team     = "DoubleDigit"
+owner_team     = "LearningTeam"
 default_region = "us-east-1"
 
-component_name = "config-server"
+component = "Config-Server"
 
 enabled         = true
 repo_name       = "config-server-app"
