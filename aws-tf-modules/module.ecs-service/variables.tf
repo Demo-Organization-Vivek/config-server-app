@@ -43,15 +43,6 @@ variable "default_target_group_port" {
   description = "Target group port for ECS Cluster"
 }
 
-#################################
-#  Default Variables            #
-#################################
-variable "s3_bucket_prefix" {
-  type        = string
-  description = "S3 deployment bucket prefix"
-  default     = "doubledigit-tfstate"
-}
-
 
 ####################################
 # Local variables                  #
@@ -67,7 +58,7 @@ locals {
 #####============================ECS Service Discovery Variables================================#####
 variable "service_discovery" {
   description = "A service discovery block"
-  type        = map(any)
+  type        = map(string)
   default     = {}
 }
 
