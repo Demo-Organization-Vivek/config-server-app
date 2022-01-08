@@ -37,6 +37,9 @@ resource "aws_ecs_service" "config_server_ecs_service" {
     container_port   = 9001
   }
 
+  service_registries {
+    registry_arn = aws_service_discovery_service.config_server_sd.arn
+  }
 }
 
 resource "aws_alb_listener_rule" "ecs_alb_listener_rule" {
