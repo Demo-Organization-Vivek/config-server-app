@@ -3,9 +3,9 @@
 ####################################################
 provider "aws" {
   region  = var.default_region
+  #  profile = "default"
 
 }
-
 
 ###########################################################
 # Terraform configuration block is used to define backend #
@@ -42,6 +42,7 @@ terraform {
 
 
   backend "s3" {
+    #    profile = "default"
     region  = "us-east-1"
     encrypt = "true"
   }

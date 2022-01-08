@@ -1,4 +1,4 @@
-owner_team     = "DoubleDigitTeam"
+owner_team     = "LearningTeam"
 default_region = "us-east-1"
 
 component_name = "config-server"

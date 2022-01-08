@@ -5,28 +5,18 @@ data "terraform_remote_state" "vpc" {
   backend = "s3"
 
   config = {
-    bucket  = "${var.s3_bucket_prefix}-${var.environment}-${var.default_region}"
+    bucket  = "${var.environment}-tfstate-${data.aws_caller_identity.current.account_id}-${var.default_region}"
     key     = "state/${var.environment}/vpc/terraform.tfstate"
     region  = var.default_region
   }
 }
 
-data "terraform_remote_state" "backend" {
+data "terraform_remote_state" "ecs_cluster" {
   backend = "s3"
 
   config = {
-    bucket  = "${var.s3_bucket_prefix}-${var.environment}-${var.default_region}"
-    key     = "state/${var.environment}/backend/terraform.tfstate"
-    region  = var.default_region
-  }
-}
-
-data "terraform_remote_state" "ecs-cluster" {
-  backend = "s3"
-
-  config = {
-    bucket  = "${var.s3_bucket_prefix}-${var.environment}-${var.default_region}"
-    key     = "state/${var.environment}/ecs-cluster/terraform.tfstate"
+    bucket  = "${var.environment}-tfstate-${data.aws_caller_identity.current.account_id}-${var.default_region}"
+    key     = "state/${var.environment}/ec2-ecs-cluster/terraform.tfstate"
     region  = var.default_region
   }
 }
@@ -35,7 +25,7 @@ data "terraform_remote_state" "config_server_ecr_state" {
   backend = "s3"
 
   config = {
-    bucket  = "${var.s3_bucket_prefix}-${var.environment}-${var.default_region}"
+    bucket  = "${var.environment}-tfstate-${data.aws_caller_identity.current.account_id}-${var.default_region}"
     key     = "state/${var.environment}/ecr-repo/config-server-app/terraform.tfstate"
     region  = var.default_region
   }
@@ -54,8 +44,11 @@ data "template_file" "config_server_task" {
 
   vars = {
     config_server_image = data.terraform_remote_state.config_server_ecr_state.outputs.ecr_registry_url
-    log_group           = data.terraform_remote_state.ecs-cluster.outputs.ecs-cluster-log-group
+    log_group           = data.terraform_remote_state.ecs_cluster.outputs.ecs-cluster-log-group
     aws_region          = var.default_region
   }
 }
 
+
+# used for accessing Account ID and ARN
+data "aws_caller_identity" "current" {}
