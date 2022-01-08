@@ -1,6 +1,4 @@
 data "aws_iam_policy_document" "ecr_access_policy" {
-  depends_on = [data.aws_caller_identity.current]
-
   count = var.enabled ? 1 : 0
 
   statement {
@@ -33,10 +31,11 @@ data "aws_iam_policy_document" "ecr_access_policy" {
   }
 }
 
+# used for accessing Account ID and ARN
+data "aws_caller_identity" "current" {}
 
 locals {
   common_arns = {
-    user_arn = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/JenkinsSlavesRole"
-    role_arn = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/doubledigit"
+    role_arn = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/JenkinsSlavesRole"
   }
 }

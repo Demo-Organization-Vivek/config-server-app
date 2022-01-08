@@ -20,7 +20,3 @@ output "account_id" {
 output "role_arn" {
   value = local.common_arns.role_arn
 }
-
-output "user_arn" {
-  value = local.common_arns.user_arn
-}
