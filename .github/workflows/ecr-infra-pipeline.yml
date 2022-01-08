@@ -85,6 +85,7 @@ jobs:
           tf_actions_comment: false
           args: '-backend-config="config/${{ env.environment }}-backend-config.config" -backend-config="bucket=${{ env.environment }}-tfstate-${{ env.AWS_ACCOUNT }}-${{ env.AWS_REGION }}"'
 
+
       - name: 'Terraform Validate'
         uses: hashicorp/terraform-github-actions@master
         with:
@@ -92,6 +93,7 @@ jobs:
           tf_actions_subcommand: 'validate'
           tf_actions_working_dir: ${{ env.tf_working_dir_app }}
           tf_actions_comment: false
+
 
       - name: Terraform Plan ECR Repository
         if: github.event.inputs.action == 'Create'
@@ -103,6 +105,7 @@ jobs:
           tf_actions_comment: false
           tf_actions_subcommand: 'plan'
           args: '-var="environment=${{ env.environment }}" -var-file="${{ env.environment }}.tfvars"'
+
 
       - name: Terraform Apply For ECR Repository
         if: steps.app-plan.outputs.tf_actions_plan_has_changes == 'true' && github.event.inputs.action == 'Create'
