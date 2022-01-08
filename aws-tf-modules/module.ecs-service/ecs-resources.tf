@@ -34,7 +34,7 @@ resource "aws_ecs_service" "config_server_ecs_service" {
   }
 
   service_registries {
-    registry_arn = aws_service_discovery_service.config_server_sd.arn
+    registry_arn = aws_service_discovery_service.config_server_sd[0].arn
   }
 }
 
