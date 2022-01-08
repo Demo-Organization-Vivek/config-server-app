@@ -18,6 +18,12 @@ variable "owner_team" {
   type        = string
   description = "Name of owner team"
 }
+
+variable "component" {
+  type = string
+  description = "Component name"
+}
+
 #################################
 # ECR Variables                 #
 #################################
@@ -43,7 +49,8 @@ variable "max_image_count" {
 locals {
   common_tags = {
     owner       = "Vivek"
-    team        = "DoubleDigit"
+    team        = "LearningTeam"
     environment = var.environment
+    component = "Config-Server"
   }
 }
