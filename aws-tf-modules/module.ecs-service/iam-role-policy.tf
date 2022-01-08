@@ -3,7 +3,7 @@
 ###########################################################
 resource "aws_iam_role" "ecs_service_role" {
 
-  name               = "MonitoringECSServiceRole"
+  name               = "ConfigServerECSServiceRole"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -21,7 +21,7 @@ EOF
 }
 
 resource "aws_iam_policy" "ecs_service_policy" {
-  name        = "MonitoringECSServiceRolePolicy"
+  name        = "ConfigServerECSServiceRolePolicy"
   description = "Policy to access ECR, EC2 and Logs"
   path        = "/"
   policy      = data.template_file.ecs_service_policy_template.rendered
@@ -38,7 +38,7 @@ resource "aws_iam_role_policy_attachment" "ecs_service_role_att" {
 ###########################################################
 resource "aws_iam_role" "ecs_task_execution_role" {
 
-  name               = "MonitoringECSTaskExecutionRole"
+  name               = "ConfigServerECSTaskExecutionRole"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -56,7 +56,7 @@ EOF
 }
 
 resource "aws_iam_policy" "ecs_task_execution_role_policy" {
-  name        = "MonitoringECSTaskExecutionRolePolicy"
+  name        = "ConfigServerECSTaskExecutionRolePolicy"
   description = "Policy to access ECR and Logs"
   path        = "/"
   policy      = data.template_file.ecs_task_policy_template.rendered

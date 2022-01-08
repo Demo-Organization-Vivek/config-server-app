@@ -17,7 +17,7 @@ resource "aws_ecs_service" "config_server_ecs_service" {
 
   name                = var.component_name
   iam_role            = aws_iam_role.ecs_service_role.name
-  cluster             = data.terraform_remote_state.ecs-cluster.outputs.ecs-cluster-id
+  cluster             = data.terraform_remote_state.ecs_cluster.outputs.ecs-cluster-id
   task_definition     = aws_ecs_task_definition.config_server_task_def.arn
   desired_count       = var.service_desired_count
   scheduling_strategy = "REPLICA"
@@ -41,7 +41,7 @@ resource "aws_ecs_service" "config_server_ecs_service" {
 resource "aws_alb_listener_rule" "ecs_alb_listener_rule" {
   depends_on = [aws_lb_target_group.config_server_ecs_alb_tg]
 
-  listener_arn = data.terraform_remote_state.ecs-cluster.outputs.alb-listner-arn
+  listener_arn = data.terraform_remote_state.ecs_cluster.outputs.alb-listner-arn
   priority     = "001"
 
   action {
