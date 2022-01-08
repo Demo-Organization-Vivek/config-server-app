@@ -13,7 +13,11 @@ resource "aws_ecs_task_definition" "config_server_task_def" {
 
 
 resource "aws_ecs_service" "config_server_ecs_service" {
-  depends_on = [aws_iam_role.ecs_service_role, aws_iam_role.ecs_task_execution_role]
+  depends_on = [
+    aws_iam_role.ecs_service_role,
+    aws_iam_role.ecs_task_execution_role,
+    aws_service_discovery_service.config_server_sd
+  ]
 
   name                = var.component_name
   iam_role            = aws_iam_role.ecs_service_role.name
