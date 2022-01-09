@@ -17,7 +17,7 @@ on:
 
 env:
   tf_version: '0.13.5'
-  tf_working_dir_app: './deployment/ecr-infra/'
+  tf_working_dir_app: './aws-tf-modules-deployment/ecr-infra/'
   maven_dir: './app-config-server/'
   aws_region: 'us-east-1'
   environment: ${{ github.event.inputs.env }}
