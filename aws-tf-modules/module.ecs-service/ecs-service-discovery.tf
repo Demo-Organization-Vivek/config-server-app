@@ -2,7 +2,7 @@
 locals {
   dns_routing_policy = lookup(var.service_discovery, "routing_policy", "MULTIVALUE")
   dns_ttl            = lookup(var.service_discovery, "ttl", 60)
-  dns_type           = lookup(var.service_discovery, "type", "A")
+  dns_type           = lookup(var.service_discovery, "type", "SRV")
   namespace_name     = lookup(var.service_discovery, "name", var.component_name)
 }
 
