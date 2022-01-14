@@ -20,7 +20,7 @@ resource "aws_ecs_service" "config_server_ecs_service" {
   ]
 
   name                = var.component_name
-  iam_role            = aws_iam_role.ecs_service_role.arn
+//  iam_role            = aws_iam_role.ecs_service_role.arn
   cluster             = data.terraform_remote_state.ecs_cluster.outputs.ecs-cluster-id
   task_definition     = aws_ecs_task_definition.config_server_task_def.arn
   desired_count       = var.service_desired_count
