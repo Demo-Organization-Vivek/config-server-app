@@ -50,7 +50,7 @@ variable "default_target_group_port" {
 locals {
   common_tags = {
     owner       = "Vivek"
-    team        = "TeamConcept"
+    team        = "DD-Team"
     environment = var.environment
   }
 }
