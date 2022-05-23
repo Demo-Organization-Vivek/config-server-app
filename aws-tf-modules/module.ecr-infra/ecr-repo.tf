@@ -2,6 +2,15 @@ resource "aws_ecr_repository" "config_server_app_ecr" {
   count = var.enabled ? 1 : 0
 
   name = var.repo_name
+  image_tag_mutability = "MUTABLE"
+
+  encryption_configuration {
+    encryption_type = "AES256"
+  }
+
+  image_scanning_configuration {
+    scan_on_push = true
+  }
   tags = merge(local.common_tags, map("Name", "config-server-ecr-repo"))
 }
 
