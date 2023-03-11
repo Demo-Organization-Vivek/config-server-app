@@ -11,7 +11,9 @@ resource "aws_ecr_repository" "config_server_app_ecr" {
   image_scanning_configuration {
     scan_on_push = true
   }
-  tags = merge(local.common_tags, map("Name", "config-server-ecr-repo"))
+
+  tags = merge(local.common_tags, tomap({"Name" = "config-server-ecr-repo"}))
+
 }
 
 resource "aws_ecr_lifecycle_policy" "config_server_lifecycle" {
