@@ -8,7 +8,7 @@ resource "aws_ecs_task_definition" "config_server_task_def" {
 
   container_definitions = data.template_file.config_server_task.rendered
 
-  tags = merge(local.common_tags, map("Name", "Config-Server-Task"))
+  tags = merge(local.common_tags, tomap({"Name"= "Config-Server-Task"}))
 }
 
 
