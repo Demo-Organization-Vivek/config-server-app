@@ -16,7 +16,7 @@ on:
         description: 'qa or test or prod'
 
 env:
-  tf_version: '0.13.5'
+  tf_version: '1.1.7'
   tf_working_dir_app: './aws-tf-modules-deployment/ecs-service/'
   aws_region: 'us-east-1'
   environment: ${{ github.event.inputs.env }}
